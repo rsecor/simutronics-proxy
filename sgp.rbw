@@ -10,6 +10,8 @@ puts "#{__FILE__}: #{__LINE__}:#{Time.now}: DEBUG: Server: Port: Search" if $deb
 port = server.addr[1]
 puts "#{__FILE__}: #{__LINE__}:#{Time.now}: DEBUG: Server: Port: #{port}" if $debug == 1
 
+# need to add an exception in case script is closed out so that it exists gracefully
+
 loop do
 	client = server.accept
 	puts "#{__FILE__}: #{__LINE__}:#{Time.now}: DEBUG: client connected" if $debug == 1
@@ -18,5 +20,6 @@ loop do
 	puts "#{__FILE__}: #{__LINE__}:#{Time.now}: DEBUG: client closed" if $debug == 1
 end
 
+server.close
 puts "#{__FILE__}: #{__LINE__}:#{Time.now}: DEBUG: Server: Ending" if $debug == 1
 exit(1)
